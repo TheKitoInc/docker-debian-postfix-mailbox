@@ -1,0 +1,8 @@
+include:
+  - https://github.com/TheKitoInc/docker-debian-postfix.git
+
+services:
+  kito-debian-postfix-mailbox:
+    depends_on: [kito-debian-postfix]
+    build: .
+    image: kito-debian-postfix-mailbox:latest
