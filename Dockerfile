@@ -1,6 +1,13 @@
 FROM kito-debian-postfix:latest
 
+# Set environment variables
+ARG DEBIAN_FRONTEND=noninteractive
 
+# Run upgrade
+RUN upgrade
+
+# Install postfix-sqlite
+RUN apt-get install -y postfix-sqlite
 
 RUN postconf -e "virtual_mailbox_domains = regexp:/etc/postfix/virtual_mailbox_domains"
 RUN postconf -e "virtual_mailbox_maps = regexp:/etc/postfix/virtual_mailbox_maps"
