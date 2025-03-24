@@ -19,6 +19,11 @@ RUN echo 'dbpath = /dev/null' > /etc/postfix/virtual_mailbox_maps.cf
 RUN echo 'query = SELECT PRINTF("%d/%u/")'  >> /etc/postfix/virtual_mailbox_maps.cf
 RUN postconf -e "virtual_mailbox_maps = sqlite:/etc/postfix/virtual_mailbox_maps.cf"
 
+# Create storage directory
+RUN mkdir -p /var/maildir
+RUN chown -R 1000:1000 /var/maildir
+RUN postconf -e "virtual_mailbox_base = /var/maildir"
+
 RUN postconf -e "virtual_minimum_uid = 1000"
 RUN postconf -e "virtual_uid_maps = static:1000"
 RUN postconf -e "virtual_gid_maps = static:1000"
