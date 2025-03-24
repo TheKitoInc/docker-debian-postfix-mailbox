@@ -24,6 +24,7 @@ RUN mkdir -p /var/maildir
 RUN chown -R 1000:1000 /var/maildir
 RUN postconf -e "virtual_mailbox_base = /var/maildir"
 
+# Filesystem configuration 
 RUN postconf -e "virtual_minimum_uid = 1000"
 RUN postconf -e "virtual_uid_maps = static:1000"
 RUN postconf -e "virtual_gid_maps = static:1000"
